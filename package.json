@@ -33,5 +33,13 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "devDependencies": {
+    "husky": "^1.1.2"
+  },
+  "husky": {
+    "hooks": {
+      "post-checkout": "yarn"
+    }
+  }
 }
