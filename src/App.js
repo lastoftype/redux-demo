@@ -1,28 +1,41 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import Chance from "chance";
+
+import { connect } from "react-redux";
+import { setLoading, addOrder } from "./store";
+
+var chance = new Chance();
 
 class App extends Component {
+  generateOrder() {
+    return {
+      id: Math.floor(Math.random() * 100),
+      name: chance.name({ gender: "female" })
+    };
+  }
+
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+      <div>
+        <button onClick={() => this.props.addOrder(this.generateOrder())}>
+          Add Order
+        </button>
+        <pre style={{ fontSize: "23px" }} className="App">
+          {JSON.stringify(this.props, null, " ")}
+        </pre>
       </div>
     );
   }
 }
 
-export default App;
+const mapStateToProps = state => state;
+
+const mapDispatchToProps = {
+  setLoading,
+  addOrder
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(App);
