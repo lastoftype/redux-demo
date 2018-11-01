@@ -1,4 +1,9 @@
-import { createStore } from "redux";
+import { createStore, applyMiddleware } from "redux";
+import createSagaMiddleware from "redux-saga";
+import mySaga from "./sagas";
+
+// Sagas
+const sagaMiddleware = createSagaMiddleware();
 
 //
 //  Actions
@@ -16,12 +21,17 @@ export const addOrder = order => ({
   }
 });
 
+export const getUsers = () => ({
+  type: "GET_USERS"
+});
+
 //
 //  Reducer
 //
 export const INITIAL_STATE = {
   loading: false,
-  orders: []
+  orders: [],
+  users: []
 };
 
 export const appReducer = (state = INITIAL_STATE, action) => {
@@ -30,6 +40,8 @@ export const appReducer = (state = INITIAL_STATE, action) => {
       return { ...state, loading: action.payload };
     case "ADD_ORDER":
       return { ...state, orders: [...state.orders, action.payload] };
+    case "GET_USERS_SUCCEEDED":
+      return { ...state, users: action.payload };
     default:
       return state;
   }
@@ -38,4 +50,6 @@ export const appReducer = (state = INITIAL_STATE, action) => {
 //
 //  Store
 //
-export const store = createStore(appReducer);
+export const store = createStore(appReducer, applyMiddleware(sagaMiddleware));
+
+sagaMiddleware.run(mySaga);

@@ -1,0 +1,40 @@
+{
+  "users": [
+    {
+      "id": 42,
+      "name": "Claudia Reed"
+    },
+    {
+      "id": 20,
+      "name": "Dora Holt"
+    },
+    {
+      "id": 2,
+      "name": "Francis Paul"
+    },
+    {
+      "id": 8,
+      "name": "Lola Guerrero"
+    },
+    {
+      "id": 52,
+      "name": "Amy Montgomery"
+    },
+    {
+      "id": 33,
+      "name": "Lottie May"
+    },
+    {
+      "id": 52,
+      "name": "Louisa Perkins"
+    },
+    {
+      "id": 52,
+      "name": "Sylvia Reeves"
+    },
+    {
+      "id": 28,
+      "name": "Estella Shaw"
+    }
+  ]
+}

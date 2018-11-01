@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Chance from "chance";
 
 import { connect } from "react-redux";
-import { setLoading, addOrder } from "./store";
+import { setLoading, addOrder, getUsers } from "./store";
 
 var chance = new Chance();
 
@@ -17,6 +17,7 @@ class App extends Component {
   render() {
     return (
       <div>
+        <button onClick={() => this.props.getUsers()}>Get Users</button>
         <button onClick={() => this.props.addOrder(this.generateOrder())}>
           Add Order
         </button>
@@ -32,7 +33,8 @@ const mapStateToProps = state => state;
 
 const mapDispatchToProps = {
   setLoading,
-  addOrder
+  addOrder,
+  getUsers
 };
 
 export default connect(
